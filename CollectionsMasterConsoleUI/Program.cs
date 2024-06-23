@@ -70,23 +70,35 @@ namespace CollectionsMasterConsoleUI
             /*   Set Up   */
             //TODO: Create an integer List
 
-            var numbersList = new List<int>();
+            var numList = new List<int>();
 
             //TODO: Print the capacity of the list to the console
 
-            Console.WriteLine($" Capacity {numbersList.Capacity}");
+            Console.WriteLine($"Capacity: {numList.Capacity}");
 
             //TODO: Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
-            
+
+            Populater(numList);
 
             //TODO: Print the new capacity
-            
+            Console.WriteLine($"New Capacity: {numList.Capacity}");
 
             Console.WriteLine("---------------------");
 
             //TODO: Create a method that prints if a user number is present in the list
             //Remember: What if the user types "abc" accident your app should handle that!
-            Console.WriteLine("What number will you search for in the number list?");
+            
+            int userNumber;
+            bool isANumber;
+
+            do
+            {
+                Console.WriteLine("What number will you search for in the number list?");
+                isANumber = int.TryParse(Console.ReadLine(), out userNumber);
+
+            } while (isANumber == false);
+
+            NumberChecker(numList, userNumber);
             
             Console.WriteLine("-------------------");
 
@@ -135,15 +147,30 @@ namespace CollectionsMasterConsoleUI
 
         private static void NumberChecker(List<int> numberList, int searchNumber)
         {
-            
+           if(numberList.Contains(searchNumber))
+           {
+                Console.WriteLine($"Yes, this is the number you are looking for.");
+           }
+           else
+           {
+                Console.WriteLine($"This isn't the number you are looking for");
+                Console.WriteLine($"these aren't the numbers we are looking for");
+           }
         }
 
         private static void Populater(List<int> numberList)
         {
             
-            for (int i = 0; i < numbers.)
-            Random rng = new Random();
+            while(numberList.Count < 51)
+            {
+                Random rng = new Random();
+                var number = rng.Next(0, 50);
 
+                numberList.Add(number);
+            }
+
+            NumberPrinter(numberList);
+            
         }
 
         private static void Populater(int[] numbers)
